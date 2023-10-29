@@ -20,8 +20,8 @@ public class ProductoService {
     public Producto guardar(Producto producto){
         return productoRepository.save(producto);
     }
-    public Optional<Producto> obtenerProductoPorId(Integer id){
-        Optional<Producto> producto = productoRepository.findById(id);
+    public Optional<Producto> obtenerProductoPorId(Integer idpro){
+        Optional<Producto> producto = productoRepository.findById(idpro);
         if(producto.isEmpty()){
             return Optional.empty();
         }else
@@ -32,16 +32,16 @@ public class ProductoService {
         productoRepository.deleteById(id);
     }
 
-    public List<Producto> buscarProNom(String nombre){
+    public List<Producto> buscarProNom(String nombrepro){
 
-        return productoRepository.findBynombrepro(nombre);
+        return productoRepository.findBynombrepro(nombrepro);
     }
 
     public List<Producto> buscarPro(){
-        return productoRepository.findProductosEntre10y100();
+        return productoRepository.findProEntre();
     }
 
     public List<Producto> buscarProAnio(Integer anio){
-        return productoRepository.findProductosByYear2024(anio);
+        return productoRepository.findProanio(anio);
     }
 }

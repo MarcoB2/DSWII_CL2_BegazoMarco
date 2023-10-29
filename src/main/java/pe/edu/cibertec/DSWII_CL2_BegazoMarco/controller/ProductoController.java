@@ -5,9 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.cibertec.DSWII_CL2_BegazoMarco.model.Producto;
-import pe.edu.cibertec.DSWII_CL2_BegazoMarco.repository.ProductoRepository;
 import pe.edu.cibertec.DSWII_CL2_BegazoMarco.exception.ResourceNotFoundException;
-import pe.edu.cibertec.DSWII_CL2_BegazoMarco.model.Producto;
 import pe.edu.cibertec.DSWII_CL2_BegazoMarco.service.ProductoService;
 
 import java.util.ArrayList;
@@ -53,11 +51,11 @@ public class ProductoController {
 
     @PutMapping("/{idpro}")
     public ResponseEntity<Producto> actualizarProducto(
-            @PathVariable("idpro") Integer id,
+            @PathVariable("idpro") Integer idpro,
             @RequestBody Producto nuevoProducto
     ){
         Producto productoExistente = productoService
-                .obtenerProductoPorId(id)
+                .obtenerProductoPorId(idpro)
                 .orElse(null);
         if (productoExistente != null) {
             productoExistente.setNombrepro(nuevoProducto.getNombrepro());
@@ -73,9 +71,9 @@ public class ProductoController {
 
     @DeleteMapping("/{idpro}")
     public ResponseEntity<Void> eliminarProducto(
-            @PathVariable("id") Integer id
+            @PathVariable("idpro") Integer idpro
     ){
-        productoService.eliminarProducto(id);
+        productoService.eliminarProducto(idpro);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
